@@ -14,8 +14,4 @@ public class Mechanic extends Person {
     public int weeklySalary() {
         return weeklyWorkHours * hourlyWage;
     }
-
-    public int getHourlyWage(){
-        return hourlyWage;
-    }
 }
