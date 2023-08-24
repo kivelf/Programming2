@@ -39,4 +39,12 @@ public class Customer {
     public void removeOrder(Order order) {
         orders.remove(order);
     }
+
+    public double getTotalBuy(){
+        double total = 0;
+        for (Order o : orders){
+            total += o.getOrderPrice();
+        }
+        return total;
+    }
 }
