@@ -14,4 +14,6 @@ public abstract class Employee {
     public int getHourlyWage() {
         return hourlyWage;
     }
+
+    public abstract int weeklySalary();
 }

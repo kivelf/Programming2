@@ -13,6 +13,7 @@ public class Foreman extends Employee {
         this.weeklyBonus = weeklyBonus;
     }
 
+    @Override
     public int weeklySalary() {
         return weeklyWorkHours * super.getHourlyWage() + weeklyBonus;
     }

@@ -9,6 +9,7 @@ public class Mechanic extends Employee{
         this.yearEducated = year;
     }
 
+    @Override
     public int weeklySalary() {
         return weeklyWorkHours * super.getHourlyWage();
     }

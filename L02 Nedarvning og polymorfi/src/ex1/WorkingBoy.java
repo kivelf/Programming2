@@ -9,6 +9,7 @@ public class WorkingBoy extends Employee {
         this.age = age;
     }
 
+    @Override
     public int weeklySalary() {
         return weeklyWorkHours * super.getHourlyWage();
     }
