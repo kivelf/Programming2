@@ -1,6 +1,6 @@
 package opg5;
 
-public class Vehicle {
+public abstract class Vehicle {
     private String make;
     private String model;
     private int year;
@@ -20,13 +20,9 @@ public class Vehicle {
         System.out.println("Mileage: " + mileage + " km");
     }
 
-    public void start(){
-        System.out.println("This " + make + " " + model + " is now on...");
-    }
+    public abstract void start();
 
-    public void stop(){
-        System.out.println("This " + make + " " + model + " is now off...");
-    }
+    public abstract void stop();
 
     public void performAction(){
         this.action();
