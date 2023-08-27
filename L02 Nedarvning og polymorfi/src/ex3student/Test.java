@@ -19,6 +19,7 @@ public class Test {
         OrderLine ol4 = new OrderLine(4, 1, p3);    // 1x dog toy
         OrderLine ol5 = new OrderLine(5, 1, p4);    // 1x cat food
         OrderLine ol6 = new OrderLine(6, 2, p5);    // 2x dog food
+        OrderLine ol7 = new OrderLine(7, 50, p5);   // 50x dog food
 
         Order o1 = new Order(1);
         o1.addOrderLine(ol1);
@@ -51,7 +52,25 @@ public class Test {
 
         System.out.println("Price of order 1: " + o1.getOrderPrice());
         System.out.println("Price of order 2: " + o2.getOrderPrice());
+        System.out.println();
         System.out.println("Customer 1 has purchased for a total of: " + c1.getTotalBuy());
         System.out.println("Customer 2 has purchased for a total of: " + c2.getTotalBuy());
+        System.out.println();
+
+        // testing d)
+        Discount discount1 = new PercentDiscount(15);
+        c1.setDiscount(discount1);
+        Discount discount2 = new FixedDiscount(250, 1000);
+        c2.setDiscount(discount2);
+
+        Order o7 = new Order(7);
+        o7.addOrderLine(ol7);
+        c2.addOrder(o7);
+
+        System.out.println("Customer 1's order summary:");
+        c1.printPricesForOrdersWithAndWithoutDisount();
+        System.out.println();
+        System.out.println("Customer 2's order summary:");
+        c2.printPricesForOrdersWithAndWithoutDisount();
     }
 }

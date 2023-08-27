@@ -11,6 +11,8 @@ public class Customer {
     // association 1 --> 0..* Order
     private final ArrayList<Order> orders = new ArrayList<>();
 
+    private Discount discount;
+
     public Customer(String name, LocalDate birthday) {
         this.name = name;
         this.birthday = birthday;
@@ -40,11 +42,41 @@ public class Customer {
         orders.remove(order);
     }
 
+    public void setDiscount(Discount discount){
+        this.discount = discount;
+    }
+
     public double getTotalBuy(){
         double total = 0;
         for (Order o : orders){
             total += o.getOrderPrice();
         }
         return total;
+    }
+
+    public double totalBuyWithDiscount(){
+        if (discount != null){
+            double total = 0;
+            for (Order o : orders){
+                total += o.getOrderPrice() - discount.getDiscount(o.getOrderPrice());
+            }
+            return total;
+        }
+        else return this.getTotalBuy();
+    }
+
+    public void printPricesForOrdersWithAndWithoutDisount(){
+        if (discount == null){
+            for (Order o : orders){
+                System.out.println(o);
+            }
+        } else {
+            for (Order o : orders){
+                System.out.println("The total price of the order without discount is: " + o.getOrderPrice() + " kr.");
+                if (discount.getDiscount(o.getOrderPrice()) != 0){
+                    System.out.println("The total price of the order with discount is: " + (o.getOrderPrice() - discount.getDiscount(o.getOrderPrice())) + " kr.");
+                }
+            }
+        }
     }
 }

@@ -32,4 +32,9 @@ public class Order {
         }
         return total;
     }
+
+    @Override
+    public String toString(){
+        return "The total price of the order is: " + this.getOrderPrice() + " kr.";
+    }
 }
