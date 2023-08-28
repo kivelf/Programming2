@@ -1,8 +1,8 @@
 package ex3student;
 
 public class FixedDiscount extends Discount{
-    private int fixedDiscount;
-    private int discountLimit;
+    private final int fixedDiscount;
+    private final int discountLimit;
 
     public FixedDiscount(int fixedDiscount, int discountLimit) {
         this.fixedDiscount = fixedDiscount;
@@ -11,7 +11,7 @@ public class FixedDiscount extends Discount{
 
     @Override
     public double getDiscount(double price){
-        if (price > discountLimit){
+        if (price >= discountLimit){
             return fixedDiscount;
         }
         else return 0;

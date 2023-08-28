@@ -12,12 +12,6 @@ public class Ellipse extends GeometricObject {
     }
 
     @Override
-    public void setNewCoordinates(double a, double b){
-        setX(getX() + a);
-        setY(getY() + b);
-    }
-
-    @Override
     public double getArea(){
         return r1 * r2 * Math.PI;
     }

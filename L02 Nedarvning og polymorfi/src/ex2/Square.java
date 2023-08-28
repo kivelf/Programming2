@@ -10,12 +10,6 @@ public class Square extends GeometricObject {
     }
 
     @Override
-    public void setNewCoordinates(double a, double b){
-        setX(getX() + a);
-        setY(getY() + b);
-    }
-
-    @Override
     public double getArea(){
         return side * side;
     }

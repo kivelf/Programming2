@@ -23,7 +23,10 @@ public abstract class GeometricObject {
         return y;
     }
 
-    public abstract void setNewCoordinates(double a, double b);
+    public void setNewCoordinates(double a, double b) {
+        setX(getX() + a);
+        setY(getY() + b);
+    }
 
     public abstract double getArea();
 }
