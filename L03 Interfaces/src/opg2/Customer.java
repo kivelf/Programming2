@@ -11,6 +11,9 @@ public class Customer implements Comparable<Customer>{
         this.age = age;
     }
 
+    // add get-methods as needed
+
+    // compare order: last name --> first name if same --> age if also same
     @Override
     public int compareTo(Customer c) {
         if (this.lastName.compareTo(c.lastName) == 0){
@@ -20,5 +23,10 @@ public class Customer implements Comparable<Customer>{
             else return this.firstName.compareTo(c.firstName);
         }
         else return this.lastName.compareTo(c.lastName);
+    }
+
+    @Override
+    public String toString(){
+        return "Customer " + firstName + " " + lastName + ", age: " + age;
     }
 }
