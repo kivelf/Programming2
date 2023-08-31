@@ -26,6 +26,8 @@ public class App {
         ChiliFilter filteringChilies = new ChiliFilter();
         System.out.println("The average strength above 5000 is " + average(measurableObjects1, filteringChilies));
     }
+
+    /** Pre: the array is not empty. */
     public static double average(Measurable[] objects) {
         double total = 0;
         int count = 0;
@@ -36,6 +38,7 @@ public class App {
         return total / count;
     }
 
+    /** Pre: the array is not empty. */
     public static double average(Measurable[] objects, ChiliFilter cf) {
         double total = 0;
         int count = 0;
@@ -48,6 +51,7 @@ public class App {
         return total / count;
     }
 
+    /** Pre: the array is not empty. */
     public static Measurable max(Measurable[] objects) {
         Measurable max = objects[0];
             for (int i = 1; i < objects.length; i++) {
@@ -58,6 +62,7 @@ public class App {
         return max;
     }
 
+    /** Pre: the arrays are not empty. */
     public static Measurable[] blackFridayMeal(Measurable[] chilies, Measurable[] beers) {
         return new Measurable[]{max(chilies), max(beers)};
     }

@@ -25,6 +25,7 @@ public class Test {
         System.out.println(Arrays.toString(biggerThanCustomer(customers, c5)));
     }
 
+    /** Pre: customers is not empty. */
     public static Customer biggestCustomer(Customer[] customers){
         Customer biggest = customers[0];
         for (int i = 1; i < customers.length; i++){
@@ -45,10 +46,14 @@ public class Test {
             }
         }
         // trimming any null positions
+
+        /* 'old' way to trim:
         Customer[] biggerCustomers = new Customer[count];
         for (int i = 0; i < count; i++){
             biggerCustomers[i] = temp[i];
         }
-        return biggerCustomers;
+        return biggerCustomers; */
+
+        return Arrays.copyOf(temp, count);
     }
 }
