@@ -12,7 +12,7 @@ public class Ex4 {
         String reversed = s;
         if (s.length() == 2){
             reversed = s.charAt(1) + "" + s.charAt(0);
-        } else if (s.length() <= 1){
+        } else if (s.length() == 1){
             // the char in the middle is already correct, so no need to do anything
         }
         else {
