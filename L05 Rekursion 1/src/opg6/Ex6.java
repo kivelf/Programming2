@@ -9,9 +9,9 @@ public class Ex6 {
         System.out.println("GCD of 13 and 17 is: " + gcd(13, 17));
     }
 
-    /** Both a and b are >= 2. */
+    /** Pre: a >= 2, b >= 2. */
     public static int gcd(int a, int b){
-        if (b <= a && a % b == 0){
+        if (a >= b && a % b == 0){
             return b;
         } else if (a < b){
             return gcd(b, a);
