@@ -2,7 +2,9 @@ package extraHanoi;
 
 public class Hanoi {
     public static void main(String[] args) {
-            move(5, 1, 3); // 4 diske fra 1 (=A) til 3 (=C)
+        move(5, 1, 3); // 4 diske fra 1 (=A) til 3 (=C)
+        // number of moves:
+        // f(n) = 2^n - 1
     }
         // move n disks from ‘from’ to ‘to’
     public static void move(int n, int from, int to) {
