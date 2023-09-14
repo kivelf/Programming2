@@ -6,15 +6,9 @@ import java.util.List;
 public class Ex3 {
     // test of Merge-sorting algorithm
     public static void main(String[] args) {
-        ArrayList<Integer> nums = new ArrayList<>();
-        nums.add(8);
-        nums.add(56);
-        nums.add(45);
-        nums.add(34);
-        nums.add(15);
-        nums.add(12);
-        nums.add(34);
-        nums.add(44);
+        ArrayList<Integer> nums = new ArrayList<>(){{add(8); add(56);
+            add(45); add(34); add(15); add(12); add(34); add(44);}};
+
         System.out.println("List before sorting: " + nums.toString());
         mergesort(nums);
         System.out.println("List after sorting: " + nums.toString());

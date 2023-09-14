@@ -11,16 +11,13 @@ public class Ex2 {
         System.out.println("The total number of 0's in the list is " + countZeroes(nums2));
     }
 
-    /** Pre: list.size() >= 0. */
     public static int countZeroes(List<Integer> list) {
+        if (list.isEmpty()) return 0;
         return countZeroes(list, 0, list.size() - 1, 0);
     }
     private static int countZeroes(List<Integer> list, int l, int r, int count) {
         if (l == r) {
-            if (list.get(l) == 0){
-                count++;
-            }
-            return count;
+            return count += list.get(l) == 0 ? 1 : 0;
         } else {
             int m = (l + r) / 2;
             int left = countZeroes(list, l, m, count);

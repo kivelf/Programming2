@@ -8,8 +8,8 @@ public class Ex1 {
         System.out.println("The total of the numbers is " + total(nums));
     }
 
-    /** Pre: list.size() >= 0. */
     public static int total(List<Integer> list) {
+        if (list.isEmpty()) return 0;
         return calcTotal(list, 0, list.size() - 1);
     }
     private static int calcTotal(List<Integer> list, int l, int r) {
@@ -17,9 +17,7 @@ public class Ex1 {
             return list.get(l);
         } else {
             int m = (l + r) / 2;
-            int left = calcTotal(list, l, m);
-            int right = calcTotal(list, m + 1, r);
-            return left + right;
+            return calcTotal(list, l, m) + calcTotal(list, m + 1, r);
         }
     }
 }
