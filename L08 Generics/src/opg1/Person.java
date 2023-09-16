@@ -1,6 +1,6 @@
 package opg1;
 
-public class Person<T> implements Comparable<Person<T>>{
+public class Person<T extends Comparable<T>> implements Comparable<Person<T>>{
     private T name;
 
     public Person(T name) {
