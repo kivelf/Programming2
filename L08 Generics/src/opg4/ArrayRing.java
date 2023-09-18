@@ -50,8 +50,8 @@ public class ArrayRing<T> implements Ring<T> {
     @Override
     public void add(T item){
         items.add(item);
-        currentItemIndex = size;
         size++;
+        currentItemIndex = size - 1;
         currentItem = items.get(size - 1);
     }
 
@@ -70,17 +70,13 @@ public class ArrayRing<T> implements Ring<T> {
                         found = true;
                     }
                 }
-                // updating the current item
-                items.set(index, items.get(index + 1));
-                currentItem = items.get(index);
-                currentItemIndex = index;
                 // move all the remaining items one index to the left
-                for (int i = index + 1; i < size - 1; i++){
+                for (int i = index; i < size - 1; i++){
                     items.set(i, items.get(i + 1));
                 }
+                items.set(size - 1, null);
+                size--;
             }
-            items.set(size - 1, null);
-            size--;
             return true;
         } else {
             return false;
@@ -100,9 +96,11 @@ public class ArrayRing<T> implements Ring<T> {
                     size--;
                     if (size != 0){
                         currentItem = items.get(0);
+                        currentItemIndex = 0;
                     } else {
                         // if the removed item was the only item in the ring
                         currentItem = null;
+                        currentItemIndex = 0;
                     }
                 } else {
                     // updating the current item
@@ -113,9 +111,9 @@ public class ArrayRing<T> implements Ring<T> {
                     for (int i = currentItemIndex  + 1; i < size - 1; i++){
                         items.set(i, items.get(i + 1));
                     }
+                    items.set(size - 1, null);
+                    size--;
                 }
-                items.set(size - 1, null);
-                size--;
                 return removedItem;
             }
         }
