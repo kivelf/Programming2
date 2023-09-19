@@ -30,6 +30,7 @@ public class ArrayRing<T> implements Ring<T> {
                 currentItem = items.get(0);
                 currentItemIndex = 0;
             }
+            // currentIndex = (current + 1) % items.size();
         }
     }
 
@@ -64,6 +65,7 @@ public class ArrayRing<T> implements Ring<T> {
                 // find the index of the item
                 int index = 0;
                 boolean found = false;
+                // items.indexOf(item);
                 for (int i = 0; i < size && !found; i++){
                     if (items.get(i).equals(item)){
                         index = i;
@@ -83,6 +85,7 @@ public class ArrayRing<T> implements Ring<T> {
         }
     }
 
+    // 'member the .remove() method!!!
     @Override
     public T removeCurrentItem(){
         try {
