@@ -2,11 +2,12 @@ package ex1;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class UseMethodsWithHashSet {
     public static void main(String[] args) {
         // a)
-        HashSet<Integer> set = new HashSet<>();
+        Set<Integer> set = new HashSet<>();
         // b)
         set.add(34);
         set.add(12);
