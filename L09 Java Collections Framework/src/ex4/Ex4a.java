@@ -14,7 +14,7 @@ public class Ex4a {
         // try reading the words from the txt file and inserting them into a TreeSet
         Set<String> ts = insertWordsInTreeSet(in);
         System.out.println(ts);
-        System.out.println("Total number of words: " + ts.size());
+        System.out.println("Number of unique words: " + ts.size());
         System.out.println();
 
         // b)
@@ -25,7 +25,7 @@ public class Ex4a {
                 System.out.println(entry);
             }
         }
-        System.out.println("Total number of words: " + tm.size());
+        System.out.println("Number of unique words: " + tm.size());
         System.out.println();
 
         // c)
@@ -34,11 +34,12 @@ public class Ex4a {
         // for (Map.Entry<Integer, Set<String>> entry : lhm.entrySet()){
         //     System.out.println(entry);
         // }
-        System.out.println("Total number of words: " + lhm.size());
+        System.out.println("Number of unique words: " + lhm.size());
     }
 
     public static TreeSet<String> insertWordsInTreeSet(File in){
         TreeSet<String> allWords = new TreeSet<>();
+        int counter = 0;
         try (Scanner scanner = new Scanner(in)){
             while (scanner.hasNextLine()){
                 String line = scanner.nextLine();
@@ -52,6 +53,7 @@ public class Ex4a {
                     // duplicates don't get inserted in a TreeSet so no need to check for those
                     if (w.length() > 0){
                         allWords.add(w.toLowerCase());
+                        counter++;
                     }
                 }
             }
@@ -60,11 +62,13 @@ public class Ex4a {
             System.out.println("Sorry! An unexpected error has occurred.");
             System.out.println("Technical message: " + ex.getMessage());
         }
+        System.out.println("Total number of words in the file: " + counter);
         return allWords;
     }
 
     public static TreeMap<String, Integer> insertWordsInTreeMap(File in){
         TreeMap<String, Integer> allWords = new TreeMap<>();
+        int counter = 0;
         try (Scanner scanner = new Scanner(in)){
             while (scanner.hasNextLine()){
                 String line = scanner.nextLine();
@@ -76,6 +80,7 @@ public class Ex4a {
                     // remove punctuation and such
                     String w = (word.replaceAll("[^\\sa-zæøåA-ZÆØÅ]", "")).toLowerCase();
                     if (w.length() > 0){
+                        counter++;
                         // if the TreeMap already contains the word we get the current count, else we set it to 0
                         int count = allWords.containsKey(w) ? allWords.get(w) : 0;
                         // then we add the word and the updated count for it
@@ -88,11 +93,13 @@ public class Ex4a {
             System.out.println("Sorry! An unexpected error has occurred.");
             System.out.println("Technical message: " + ex.getMessage());
         }
+        System.out.println("Total number of words in the file: " + counter);
         return allWords;
     }
 
     public static LinkedHashMap<Integer, Set<String>> insertWordsInLinkedHashMap(File in){
         LinkedHashMap<Integer, Set<String>> allWords = new LinkedHashMap<>();
+        int counter = 0;
         try (Scanner scanner = new Scanner(in)){
             while (scanner.hasNextLine()){
                 String line = scanner.nextLine();
@@ -104,6 +111,7 @@ public class Ex4a {
                     // remove punctuation and such
                     String w = (word.replaceAll("[^\\sa-zæøåA-ZÆØÅ]", "")).toLowerCase();
                     if (w.length() > 0){
+                        counter++;
                         // getting the hashCode of the string
                         int hashVal = w.hashCode();
                         if (allWords.containsKey(hashVal)) {
@@ -123,6 +131,7 @@ public class Ex4a {
             System.out.println("Sorry! An unexpected error has occurred.");
             System.out.println("Technical message: " + ex.getMessage());
         }
+        System.out.println("Total number of words in the file: " + counter);
         return allWords;
     }
 }
