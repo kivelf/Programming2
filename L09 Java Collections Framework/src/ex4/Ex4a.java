@@ -31,6 +31,9 @@ public class Ex4a {
         // c)
         // same exercise with a LinkedHashMap this time!
         LinkedHashMap<Integer, Set<String>> lhm = insertWordsInLinkedHashMap(in);
+        // for (Map.Entry<Integer, Set<String>> entry : lhm.entrySet()){
+        //     System.out.println(entry);
+        // }
         System.out.println("Total number of words: " + lhm.size());
     }
 
@@ -71,7 +74,7 @@ public class Ex4a {
                 String[] words = line.split("\\s+");
                 for (String word : words){
                     // remove punctuation and such
-                    String w = word.replaceAll("[^\\sa-zæøåA-ZÆØÅ]", "");
+                    String w = (word.replaceAll("[^\\sa-zæøåA-ZÆØÅ]", "")).toLowerCase();
                     if (w.length() > 0){
                         // if the TreeMap already contains the word we get the current count, else we set it to 0
                         int count = allWords.containsKey(w) ? allWords.get(w) : 0;
@@ -99,7 +102,7 @@ public class Ex4a {
                 String[] words = line.split("\\s+");
                 for (String word : words){
                     // remove punctuation and such
-                    String w = word.replaceAll("[^\\sa-zæøåA-ZÆØÅ]", "");
+                    String w = (word.replaceAll("[^\\sa-zæøåA-ZÆØÅ]", "")).toLowerCase();
                     if (w.length() > 0){
                         // getting the hashCode of the string
                         int hashVal = w.hashCode();
