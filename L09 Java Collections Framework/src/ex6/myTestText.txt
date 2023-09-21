@@ -1,0 +1,3 @@
+This is a short text
+Actually a haiku
+To test the method.
