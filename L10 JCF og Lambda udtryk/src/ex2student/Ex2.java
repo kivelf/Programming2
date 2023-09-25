@@ -32,5 +32,8 @@ public class Ex2 {
         runners.sort((r1, r2) -> Integer.compare(r1.getLapTime(), r2.getLapTime()));
         System.out.println(runners);
         // d)
+        int[] sum = new int[1];     // the variable doesn't change but the value in index 0 changes!
+        runners.forEach(runner -> sum[0] += runner.getLapTime());
+        System.out.println("Total lap time for all runners: " + sum[0] + " sec.");
     }
 }

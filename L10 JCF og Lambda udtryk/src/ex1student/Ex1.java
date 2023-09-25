@@ -58,12 +58,12 @@ public class Ex1 {
 
     // e)
     public static List<Person> findAll(List<Person> list, Predicate<Person> predicate){
-        ArrayList<Person> list1 = new ArrayList<>();
+        List<Person> result = new ArrayList<>();
         for (Person p: list){
             if (predicate.test(p)){
-                list1.add(p);
+                result.add(p);
             }
         }
-        return list1;
+        return result;
     }
 }

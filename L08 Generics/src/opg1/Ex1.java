@@ -34,5 +34,19 @@ public class Ex1 {
         System.out.println("List of persons: " + persons.toString());
         Collections.sort(persons);
         System.out.println("List of persons after sorting: " + persons.toString());
+
+        // c) Extra exercise - sort the list on age with the sort() method
+        // in the List class using a lambda expression.
+        person1.setAge(18);
+        person2.setAge(22);
+        person3.setAge(23);
+        person4.setAge(21);
+        person5.setAge(21);
+        person6.setAge(22);
+        persons.add(person1);
+        persons.add(person3);
+        System.out.println("List of persons with ages: " + persons.toString());
+        persons.sort((p1, p2) -> p1.getAge() - p2.getAge());
+        System.out.println("List of persons after sorting by age: " + persons.toString());
     }
 }
