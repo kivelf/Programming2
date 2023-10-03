@@ -6,7 +6,7 @@ public class Customer implements Comparable<Customer>{
     private final int number;
     private static int nrOfCustomers = 0;
     private String name;
-    private static Comparator<Customer> comparator;
+    private static Comparator<Customer> comparator = new NumberCompare();
 
     // constructor
     public Customer(String name) {
@@ -29,6 +29,7 @@ public class Customer implements Comparable<Customer>{
     }
 
     // setter methods
+    /** Pre: comparator is not null. */
     public static void setComparator(Comparator<Customer> comparator) {
         Customer.comparator = comparator;
     }
