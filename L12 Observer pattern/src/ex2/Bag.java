@@ -2,7 +2,7 @@ package ex2;
 
 public interface Bag {
     /** Add the string to the bag */
-    public void add(String s);
+    public void addItem(String s);
 
 
     /** Remove the string s from the bag (if it is the bag). */

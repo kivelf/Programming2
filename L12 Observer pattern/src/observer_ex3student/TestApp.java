@@ -3,24 +3,29 @@ package observer_ex3student;
 public class TestApp {
 
     public static void main(String[] args) {
-        // TODO: create a salesman and a purchaser
+        Salesman salesman = new Salesman("Sally");
+        Purchaser purchaser = new Purchaser("Patricia");
 
         Book donaldDuck = new Book("Donald Duck");
-        // TODO: add observers
+        donaldDuck.addObserver(salesman);
+        donaldDuck.addObserver(purchaser);
 
-        // TODO: make purchaser buy 6 copies of donaldDuck
+        purchaser.buyBook(donaldDuck, 6);
+        System.out.println(donaldDuck);
         System.out.println();
 
         Book java = new Book("Java");
-        // TODO: add observers
+        java.addObserver(salesman);
+        java.addObserver(purchaser);
 
-        // TODO: make purchaser buy 8 copies of java
+        purchaser.buyBook(java, 8);
         System.out.println();
 
         Book designPatterns = new Book("Design Patterns");
-        // TODO: add observers
+        designPatterns.addObserver(salesman);
+        designPatterns.addObserver(purchaser);
 
-        // TODO: make purchaser buy 10 copies of designPatterns
+        purchaser.buyBook(designPatterns, 10);
         System.out.println();
 
         Customer bob = new Customer("Bob");
@@ -46,12 +51,15 @@ public class TestApp {
         makeSale(designPatterns, bob);
         System.out.println();
 
-        // TODO: print each customer and his/her books
+        System.out.println("Bob has bought: " + bob.getBooks());
+        System.out.println("Alice has bought: " + alice.getBooks());
+        System.out.println("Harry has bought: " + harry.getBooks());
     }
 
     public static void makeSale(Book b, Customer c) {
         System.out.println("Sale: " + b + " sold to " + c.getName());
-        // TODO: link customer and book
+        b.addCustomer(c);
+        c.addBook(b);
         b.decCount(1);
     }
 }

@@ -6,13 +6,13 @@ public class Test {
         BagObserver observer = new BagObserverPrint();
         observableBag.addObserver(observer);
 
-        observableBag.add("kitten");
-        observableBag.add("kitten");
-        observableBag.add("kitten");
+        observableBag.addItem("kitten");
+        observableBag.addItem("kitten");
+        observableBag.addItem("kitten");
         observableBag.remove("kitten");
-        observableBag.add("hamster");
-        observableBag.add("cheese");
-        observableBag.add("hamster");
+        observableBag.addItem("hamster");
+        observableBag.addItem("cheese");
+        observableBag.addItem("hamster");
         System.out.println();
 
         observableBag.printBagContents();

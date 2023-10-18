@@ -25,7 +25,7 @@ public class ObservableBag implements Bag{
         }
     }
     @Override
-    public void add(String s){
+    public void addItem(String s){
         if (items.containsKey(s)){
             items.put(s, getCount(s) + 1);
         } else {
