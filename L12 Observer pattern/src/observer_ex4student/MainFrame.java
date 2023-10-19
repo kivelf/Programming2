@@ -10,13 +10,16 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.awt.*;
+import java.util.HashSet;
+
 public class MainFrame extends Application {
     private final GridPane pane = new GridPane();
 
     @Override
     public void start(Stage stage) {
         stage.setTitle("Ex. 4: Observer Pattern");
-        this.initContent();
+        this.initContent(stage);
 
         Scene scene = new Scene(this.pane);
         stage.setScene(scene);
@@ -25,7 +28,7 @@ public class MainFrame extends Application {
 
     // ------------------------------------------------------------------------
 
-    private void initContent() {
+    private void initContent(Stage stage) {
         pane.setPadding(new Insets(20));
         pane.setHgap(10);
         pane.setVgap(10);
@@ -50,29 +53,62 @@ public class MainFrame extends Application {
         rbnBlue.setToggleGroup(group);
         rbnBlue.setOnAction(event -> this.blueAction());
 
+        SubFrame subFrame1 = new SubFrame("SubFrame 1", stage, this);
         Button btnShowFrame1 = new Button("Open SubFrame 1");
         pane.add(btnShowFrame1, 0, 4);
+        btnShowFrame1.setOnAction(event -> this.toggleShowSubframe(subFrame1, btnShowFrame1));
 
+        SubFrame subFrame2 = new SubFrame("SubFrame 2", stage, this);
         Button btnShowFrame2 = new Button("Open SubFrame 2");
         pane.add(btnShowFrame2, 0, 5);
+        btnShowFrame2.setOnAction(event -> this.toggleShowSubframe(subFrame2, btnShowFrame2));
     }
 
     // ------------------------------------------------------------------------
 
     private String color;
+    private final static HashSet<ColourObserver> observers = new HashSet<>();
 
     private void redAction() {
         color = "pink";
         pane.setStyle("-fx-background-color: " + color);
+        updateAllObservers(color);
     }
 
     private void greenAction() {
         color = "lightgreen";
         pane.setStyle("-fx-background-color: " + color);
+        updateAllObservers(color);
     }
 
     private void blueAction() {
         color = "lightskyblue";
         pane.setStyle("-fx-background-color: " + color);
+        updateAllObservers(color);
+    }
+
+    // ------------------------------------------------------------------------
+    private void toggleShowSubframe(SubFrame subFrame, Button button){
+        if (subFrame.isShowing()){
+            subFrame.hide();
+            button.setText("Open " + subFrame.getTitle());
+        } else {
+            subFrame.show();
+            button.setText("Close " + subFrame.getTitle());
+        }
+    }
+
+    public static void registerObserver(ColourObserver colourObserver){
+        observers.add(colourObserver);
+    }
+
+    public static void deregisterObserver(ColourObserver colourObserver){
+        observers.remove(colourObserver);
+    }
+
+    public void updateAllObservers(String colour){
+        for (ColourObserver cobs : observers){
+            cobs.update(colour);
+        }
     }
 }

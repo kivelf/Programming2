@@ -8,11 +8,13 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class SubFrame extends Stage {
+public class SubFrame extends Stage implements ColourObserver{
     private final GridPane pane = new GridPane();
+    private final MainFrame mainFrame;
 
-    public SubFrame(String title, Stage owner) {
+    public SubFrame(String title, Stage owner, MainFrame mainFrame) {
         this.initOwner(owner);
+        this.mainFrame = mainFrame;
         this.initStyle(StageStyle.UTILITY);
         this.setMinHeight(100);
         this.setMinWidth(200);
@@ -39,10 +41,29 @@ public class SubFrame extends Stage {
 
         Button btnSubscribe = new Button("Subscribe");
         pane.add(btnSubscribe, 0, 1);
+        btnSubscribe.setOnAction(event -> this.subscribe());
 
         Button btnUnsubscribe = new Button("Unsubscribe");
         pane.add(btnUnsubscribe, 0, 2);
+        btnUnsubscribe.setOnAction(event -> this.unsubscribe());
 
         pane.add(this.lblInfo, 0, 3);
+    }
+
+    // -------------------------------------------------------------------------
+    public void subscribe(){
+        this.lblInfo.setText("State: subscribed");
+        MainFrame.registerObserver(this);
+    }
+
+    public void unsubscribe(){
+        this.lblInfo.setText("State: unubscribed");
+        MainFrame.deregisterObserver(this);
+    }
+
+    // -------------------------------------------------------------------------
+    @Override
+    public void update(String colour){
+        this.pane.setStyle("-fx-background-color: " + colour);
     }
 }
