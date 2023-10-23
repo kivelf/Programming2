@@ -52,4 +52,15 @@ class CarInsuranceTest {
                 () -> insurance.calculatePremium(21, true, -1));
         assertEquals(exception.getMessage(), "Invalid years input!");
     }
+
+    @Test
+    void calculatePremiumThrowsExceptionDueToYearsWithoutDamageMoreThanAllowed(){
+        // arrange
+
+        // act + assert
+        // expected to throw an error since yearsWithoutDamage < 0
+        Exception exception = assertThrows(InvalidInputException.class,
+                () -> insurance.calculatePremium(20, true, 3));
+        assertEquals(exception.getMessage(), "Invalid years input!");
+    }
 }
