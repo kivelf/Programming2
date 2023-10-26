@@ -39,7 +39,7 @@ class CarInsuranceTest {
         // expected to throw an error since age < 18
         Exception exception = assertThrows(InvalidInputException.class,
                 () -> insurance.calculatePremium(17, true, 0));
-        assertEquals(exception.getMessage(), "Invalid years input!");
+        assertEquals("Invalid years input!", exception.getMessage());
     }
 
     @Test
@@ -50,7 +50,7 @@ class CarInsuranceTest {
         // expected to throw an error since yearsWithoutDamage < 0
         Exception exception = assertThrows(InvalidInputException.class,
                 () -> insurance.calculatePremium(21, true, -1));
-        assertEquals(exception.getMessage(), "Invalid years input!");
+        assertEquals("Invalid years input!", exception.getMessage());
     }
 
     @Test
@@ -61,6 +61,6 @@ class CarInsuranceTest {
         // expected to throw an error since yearsWithoutDamage < 0
         Exception exception = assertThrows(InvalidInputException.class,
                 () -> insurance.calculatePremium(20, true, 3));
-        assertEquals(exception.getMessage(), "Invalid years input!");
+        assertEquals("Invalid years input!", exception.getMessage());
     }
 }
