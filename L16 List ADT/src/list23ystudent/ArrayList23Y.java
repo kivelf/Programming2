@@ -139,7 +139,7 @@ public class ArrayList23Y<E> implements List23Y<E> {
 
         if (index != size - 1){
             for (int i = index; i < size - 1; i++) {
-                data[index] = data[index + 1];
+                data[i] = data[i + 1];
             }
         }
         // also works if the element we want to remove is at the last index
