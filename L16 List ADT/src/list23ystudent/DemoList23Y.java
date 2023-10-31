@@ -11,8 +11,8 @@ public class DemoList23Y {
         City amsterdam = new City("Amsterdam", 7_000_000);
         City oslo = new City("Oslo", 1_200_000);
 
-        ArrayList23Y<City> list = new ArrayList23Y<>();
-//        SingleLinkedList23Y<City> list = new SingleLinkedList23Y<>();
+//        ArrayList23Y<City> list = new ArrayList23Y<>();
+        SingleLinkedList23Y<City> list = new SingleLinkedList23Y<>();
 //        DoubleLinkedList23Y<City> list = new DoubleLinkedList23Y<>();
         list.add(0,paris);
         System.out.println(list);

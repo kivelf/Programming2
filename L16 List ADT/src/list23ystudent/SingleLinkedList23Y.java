@@ -59,6 +59,18 @@ public class SingleLinkedList23Y<E> implements List23Y<E> {
      */
     @Override
     public boolean contains(E e) {
+        if (head.element.equals(e)){
+            return true;
+        }
+
+        Node<E> node = head;
+        while (node.next != null){
+            if (node.next.element.equals(e)){
+                return true;
+            } else {
+                node = node.next;
+            }
+        }
         return false;
     }
 
@@ -92,7 +104,17 @@ public class SingleLinkedList23Y<E> implements List23Y<E> {
      */
     @Override
     public E get(int index) {
-        return null;
+        if (index < 0 || index >= this.size) {
+            throw new IndexOutOfBoundsException("Invalid index!");
+        } else if (index == 0){
+            return head.element;
+        } else {
+            Node<E> node = head;
+            for (int i = 1; i < index; i++){
+                node = node.next;
+            }
+            return node.element;
+        }
     }
 
     /**
@@ -102,7 +124,27 @@ public class SingleLinkedList23Y<E> implements List23Y<E> {
      */
     @Override
     public void add(int index, E e) {
+        if (index < 0 || index > this.size) {
+            throw new IndexOutOfBoundsException("Invalid index!");
+        }
 
+        // append to the beginning of the list
+        if (index == 0){
+            Node<E> newNode = new Node<>(e);
+            newNode.next = head;
+            head = newNode;
+            size++;
+        } else {
+            Node<E> newNode = new Node<>(e);
+            Node<E> node = head;
+            for (int i = 1; i < index; i++){
+                node = node.next;
+            }
+            Node<E> temp = node.next;
+            node.next = newNode;
+            (node.next).next = temp;
+            size++;
+        }
     }
 
     /**
@@ -111,7 +153,25 @@ public class SingleLinkedList23Y<E> implements List23Y<E> {
      */
     @Override
     public E remove(int index) {
-        return null;
+        if (index < 0 || index >= this.size) {
+            throw new IndexOutOfBoundsException("Invalid index!");
+        }
+        else if (index == 0){
+            // remove head
+            Node<E> removedNode = head;
+            head = head.next;
+            size--;
+            return removedNode.element;
+        } else {
+            Node<E> current = head;
+            for (int i = 1; i < index; i++){
+                current = current.next;
+            }
+            Node<E> nodeToBeRemoved = current.next;
+            current.next = nodeToBeRemoved.next;    // a.k.a. current.next.next
+            size--;
+            return nodeToBeRemoved.element;
+        }
     }
 
     /**
@@ -120,6 +180,19 @@ public class SingleLinkedList23Y<E> implements List23Y<E> {
      */
     @Override
     public int indexOf(E e) {
+        if (head != null){
+            if (head.equals(e)){
+                return 0;
+            } else {
+                Node<E> current = head;
+                for (int i = 1; i < size; i++) {
+                    current = current.next;
+                    if (current.equals(e)) {
+                        return i;
+                    }
+                }
+            }
+        }
         return -1;
     }
 
@@ -130,7 +203,23 @@ public class SingleLinkedList23Y<E> implements List23Y<E> {
      */
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new SingleLinkedListIterator();
+    }
+
+    private class SingleLinkedListIterator implements Iterator<E>{
+        private Node<E> current = head;
+
+        @Override
+        public boolean hasNext(){
+            return current != null;
+        }
+
+        @Override
+        public E next(){
+            E e = current.element;
+            current = current.next;
+            return e;
+        }
     }
 
     //-------------------------------------------
@@ -149,6 +238,18 @@ public class SingleLinkedList23Y<E> implements List23Y<E> {
 
     @Override
     public String toString() {
-        return null;
+        StringBuilder result = new StringBuilder("[");
+        Node<E> currentNode = head;
+
+        if (head != null){
+            for (int i = 0; i < size; i++){
+                result.append(currentNode.element);
+                currentNode = currentNode.next;
+                if (currentNode != null){
+                    result.append(", ");
+                }
+            }
+        }
+        return result.toString() + "]";
     }
 }
