@@ -110,7 +110,7 @@ public class SingleLinkedList23Y<E> implements List23Y<E> {
             return head.element;
         } else {
             Node<E> node = head;
-            for (int i = 1; i < index; i++){
+            for (int i = 1; i <= index; i++){
                 node = node.next;
             }
             return node.element;

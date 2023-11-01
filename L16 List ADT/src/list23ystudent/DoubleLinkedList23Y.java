@@ -33,6 +33,20 @@ public class DoubleLinkedList23Y<E> implements List23Y<E> {
      */
     @Override
     public boolean remove(E e) {
+        if (size == 0){
+            return false;
+        } else {
+            Node<E> node = header;
+            for (int i = 0; i < size; i++){
+                node = node.next;
+                if (node.element.equals(e)){
+                    node.prev.next = node.next;
+                    node.next.prev = node.prev;
+                    size--;
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -41,6 +55,18 @@ public class DoubleLinkedList23Y<E> implements List23Y<E> {
      */
     @Override
     public boolean contains(E e) {
+        if (size == 0){
+            return false;
+        }
+
+        Node<E> node = header;
+        while (node.next != trailer){
+            if (node.next.element.equals(e)){
+                return true;
+            } else {
+                node = node.next;
+            }
+        }
         return false;
     }
 
@@ -75,7 +101,17 @@ public class DoubleLinkedList23Y<E> implements List23Y<E> {
      */
     @Override
     public E get(int index) {
-        return null;
+        if (index < 0 || index >= this.size) {
+            throw new IndexOutOfBoundsException("Invalid index!");
+        } else if (index == 0){
+            return header.element;
+        } else {
+            Node<E> node = header;
+            for (int i = 0; i <= index; i++){
+                node = node.next;
+            }
+            return node.element;
+        }
     }
 
     /**
@@ -85,7 +121,31 @@ public class DoubleLinkedList23Y<E> implements List23Y<E> {
      */
     @Override
     public void add(int index, E e) {
+        if (index < 0 || index > this.size) {
+            throw new IndexOutOfBoundsException("Invalid index!");
+        }
 
+        // append at index 0 as the first item
+        if (index == 0){
+            Node<E> newNode = new Node<>(e);
+            newNode.next = header.next;
+            header.next.prev = newNode;
+            newNode.prev = header;
+            header.next = newNode;
+            size++;
+        } else {
+            Node<E> newNode = new Node<>(e);
+            Node<E> node = header;
+            for (int i = 0; i < index; i++){
+                node = node.next;
+            }
+            Node<E> temp = node.next;
+            node.next = newNode;
+            newNode.prev = node;
+            newNode.next = temp;
+            temp.prev = newNode;
+            size++;
+        }
     }
 
     /**
@@ -94,7 +154,27 @@ public class DoubleLinkedList23Y<E> implements List23Y<E> {
      */
     @Override
     public E remove(int index) {
-        return null;
+        if (index < 0 || index >= this.size) {
+            throw new IndexOutOfBoundsException("Invalid index!");
+        }
+        else if (index == 0){
+            // remove the element right after header
+            Node<E> removedNode = header.next;
+            header.next = header.next.next;
+            header.next.prev = header;
+            size--;
+            return removedNode.element;
+        } else {
+            Node<E> current = header;
+            for (int i = 0; i < index; i++){
+                current = current.next;
+            }
+            Node<E> nodeToBeRemoved = current.next;
+            current.next = nodeToBeRemoved.next;    // a.k.a. current.next.next
+            current.next.prev = current;
+            size--;
+            return nodeToBeRemoved.element;
+        }
     }
 
     /**
@@ -103,6 +183,19 @@ public class DoubleLinkedList23Y<E> implements List23Y<E> {
      */
     @Override
     public int indexOf(E e) {
+        if (header.next != trailer){
+            if (header.next.equals(e)){
+                return 0;
+            } else {
+                Node<E> current = header.next;
+                for (int i = 1; i < size; i++) {
+                    current = current.next;
+                    if (current.equals(e)) {
+                        return i;
+                    }
+                }
+            }
+        }
         return -1;
     }
 
@@ -113,7 +206,23 @@ public class DoubleLinkedList23Y<E> implements List23Y<E> {
      */
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new DoubleLinkedListIterator();
+    }
+
+    private class DoubleLinkedListIterator implements Iterator<E>{
+        private Node<E> current = header.next;
+
+        @Override
+        public boolean hasNext(){
+            return current.next != null;
+        }
+
+        @Override
+        public E next(){
+            E e = current.element;
+            current = current.next;
+            return e;
+        }
     }
 
     //-------------------------------------------
@@ -134,6 +243,19 @@ public class DoubleLinkedList23Y<E> implements List23Y<E> {
 
     @Override
     public String toString() {
-        return null;
+        StringBuilder result = new StringBuilder("[");
+        Node<E> currentNode = header;
+
+        if (header.next != trailer){
+            currentNode = header.next;
+            for (int i = 0; i < size; i++){
+                result.append(currentNode.element);
+                currentNode = currentNode.next;
+                if (currentNode.next != null){
+                    result.append(", ");
+                }
+            }
+        }
+        return result.toString() + "]";
     }
 }
