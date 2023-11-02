@@ -1,5 +1,3 @@
-package Test;
-
 import list23ystudent.ArrayList23Y;
 import list23ystudent.DoubleLinkedList23Y;
 import list23ystudent.List23Y;

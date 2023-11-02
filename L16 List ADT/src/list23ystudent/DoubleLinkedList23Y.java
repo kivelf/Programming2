@@ -1,5 +1,4 @@
 package list23ystudent;
-
 import java.util.Iterator;
 
 /** A double-linked nodes based implementation of the List ADT. */

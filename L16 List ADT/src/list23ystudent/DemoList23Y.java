@@ -1,5 +1,4 @@
 package list23ystudent;
-
 import java.util.Iterator;
 
 public class DemoList23Y {
