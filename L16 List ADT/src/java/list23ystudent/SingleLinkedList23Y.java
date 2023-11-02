@@ -1,6 +1,7 @@
 package list23ystudent;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /** A single-linked nodes based implementation of the List ADT. */
 public class SingleLinkedList23Y<E> implements List23Y<E> {
@@ -16,14 +17,14 @@ public class SingleLinkedList23Y<E> implements List23Y<E> {
             head = new Node<>(e);
             size++;
             return;
+        } else {
+            Node<E> node = head;
+            while (node.next != null) {
+                node = node.next;
+            }
+            node.next = new Node<>(e);
+            size++;
         }
-
-        Node<E> node = head;
-        while (node.next != null) {
-            node = node.next;
-        }
-        node.next = new Node<>(e);
-        size++;
     }
 
     /**
@@ -59,13 +60,9 @@ public class SingleLinkedList23Y<E> implements List23Y<E> {
      */
     @Override
     public boolean contains(E e) {
-        if (head.element.equals(e)){
-            return true;
-        }
-
         Node<E> node = head;
-        while (node.next != null){
-            if (node.next.element.equals(e)){
+        while (node != null){
+            if (node.element.equals(e)){
                 return true;
             } else {
                 node = node.next;
@@ -134,10 +131,11 @@ public class SingleLinkedList23Y<E> implements List23Y<E> {
             newNode.next = head;
             head = newNode;
             size++;
+            return;
         } else {
             Node<E> newNode = new Node<>(e);
             Node<E> node = head;
-            for (int i = 1; i < index; i++){
+            for (int i = 1; i < index; i++) {
                 node = node.next;
             }
             Node<E> temp = node.next;
@@ -181,13 +179,13 @@ public class SingleLinkedList23Y<E> implements List23Y<E> {
     @Override
     public int indexOf(E e) {
         if (head != null){
-            if (head.equals(e)){
+            if (head.element.equals(e)){
                 return 0;
             } else {
                 Node<E> current = head;
                 for (int i = 1; i < size; i++) {
                     current = current.next;
-                    if (current.equals(e)) {
+                    if (current.element.equals(e)) {
                         return i;
                     }
                 }
@@ -216,6 +214,10 @@ public class SingleLinkedList23Y<E> implements List23Y<E> {
 
         @Override
         public E next(){
+            if (!hasNext()){
+                throw new NoSuchElementException();
+            }
+
             E e = current.element;
             current = current.next;
             return e;

@@ -103,8 +103,6 @@ public class DoubleLinkedList23Y<E> implements List23Y<E> {
     public E get(int index) {
         if (index < 0 || index >= this.size) {
             throw new IndexOutOfBoundsException("Invalid index!");
-        } else if (index == 0){
-            return header.element;
         } else {
             Node<E> node = header;
             for (int i = 0; i <= index; i++){
@@ -184,13 +182,13 @@ public class DoubleLinkedList23Y<E> implements List23Y<E> {
     @Override
     public int indexOf(E e) {
         if (header.next != trailer){
-            if (header.next.equals(e)){
+            if (header.next.element.equals(e)){
                 return 0;
             } else {
                 Node<E> current = header.next;
                 for (int i = 1; i < size; i++) {
                     current = current.next;
-                    if (current.equals(e)) {
+                    if (current.element.equals(e)) {
                         return i;
                     }
                 }

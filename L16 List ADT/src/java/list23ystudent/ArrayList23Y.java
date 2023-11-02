@@ -2,6 +2,7 @@ package list23ystudent;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * An array based implementation of the List ADT.
@@ -137,10 +138,8 @@ public class ArrayList23Y<E> implements List23Y<E> {
 
         E element = data[index];
 
-        if (index != size - 1){
-            for (int i = index; i < size - 1; i++) {
+        for (int i = index; i < size - 1; i++) {
                 data[i] = data[i + 1];
-            }
         }
         // also works if the element we want to remove is at the last index
         size--;
@@ -183,6 +182,9 @@ public class ArrayList23Y<E> implements List23Y<E> {
 
         @Override
         public E next(){
+            if (!hasNext()){
+                throw new NoSuchElementException();
+            }
             return data[current++];
         }
     }
