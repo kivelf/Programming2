@@ -1,6 +1,7 @@
 package stack23ystudent;
 
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 // OPGAVE 1 med array.
 
@@ -20,7 +21,8 @@ public class ArrayStack23Y<E> implements Stack23Y<E> {
         if (top == items.length - 1) {
             items = Arrays.copyOf(items, items.length * 2);
         }
-
+        top++;
+        items[top] = entry;
     }
 
     /**
@@ -29,8 +31,14 @@ public class ArrayStack23Y<E> implements Stack23Y<E> {
      */
     @Override
     public E pop() {
-
-        return null;
+        if (top == -1){
+            throw new NoSuchElementException("Stack is empty!");
+        } else {
+            E poppedItem = items[top];
+            items[top] = null;
+            top--;
+            return poppedItem;
+        }
     }
 
     /**
@@ -39,8 +47,11 @@ public class ArrayStack23Y<E> implements Stack23Y<E> {
      */
     @Override
     public E peek() {
-
-        return null;
+        if (top == -1){
+            throw new NoSuchElementException("Stack is empty!");
+        } else {
+            return items[top];
+        }
     }
 
     /**
@@ -48,8 +59,7 @@ public class ArrayStack23Y<E> implements Stack23Y<E> {
      */
     @Override
     public boolean isEmpty() {
-        // TODO
-        return false;
+        return top == -1;
     }
 
     /**
@@ -57,7 +67,8 @@ public class ArrayStack23Y<E> implements Stack23Y<E> {
      */
     @Override
     public void clear() {
-
+        top = -1;
+        E[] items = (E[]) new Object[4];
     }
 
     /**
@@ -65,7 +76,6 @@ public class ArrayStack23Y<E> implements Stack23Y<E> {
      */
     @Override
     public int size() {
-
-        return 0;
+        return top + 1;
     }
 }

@@ -2,6 +2,7 @@ package stack23ystudent;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
 public class DequeStack23Y<E> implements Stack23Y<E> {
     // Implements a stack by adapting a deque (implemented with a LinkedList).
@@ -24,8 +25,11 @@ public class DequeStack23Y<E> implements Stack23Y<E> {
      */
     @Override
     public E pop() {
-
-        return null;
+        if (deque.size() == 0){
+            throw new NoSuchElementException("Stack is empty!");
+        } else {
+            return deque.pop();
+        }
     }
 
     /**
@@ -34,8 +38,11 @@ public class DequeStack23Y<E> implements Stack23Y<E> {
      */
     @Override
     public E peek() {
-
-        return null;
+        if (deque.size() == 0){
+            throw new NoSuchElementException("Stack is empty!");
+        } else {
+            return deque.peek();
+        }
     }
 
     /**
@@ -43,8 +50,7 @@ public class DequeStack23Y<E> implements Stack23Y<E> {
      */
     @Override
     public boolean isEmpty() {
-
-        return false;
+        return deque.isEmpty();
     }
 
     /**
@@ -52,7 +58,7 @@ public class DequeStack23Y<E> implements Stack23Y<E> {
      */
     @Override
     public void clear() {
-
+        deque.clear();
     }
 
     /**
@@ -60,7 +66,6 @@ public class DequeStack23Y<E> implements Stack23Y<E> {
      */
     @Override
     public int size() {
-
-        return 0;
+        return deque.size();
     }
 }

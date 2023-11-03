@@ -1,5 +1,7 @@
 package stack23ystudent;
 
+import java.util.NoSuchElementException;
+
 // OPGAVE 1 med single-linked liste.
 public class LinkedStack23Y<E> implements Stack23Y<E> {
     // top of stack is at head of list
@@ -12,7 +14,17 @@ public class LinkedStack23Y<E> implements Stack23Y<E> {
      */
     @Override
     public void push(E entry) {
-
+        if (size == 0){
+            Node<E> newNode = new Node<>(entry);
+            head = newNode;
+            size++;
+        } else {
+            Node<E> newNode = new Node<>(entry);
+            Node<E> temp = head;
+            head = newNode;
+            head.next = temp;
+            size++;
+        }
     }
 
     /**
@@ -21,8 +33,14 @@ public class LinkedStack23Y<E> implements Stack23Y<E> {
      */
     @Override
     public E pop() {
-
-        return null;
+        if (size == 0){
+            throw new NoSuchElementException("Stack is empty!");
+        } else {
+            Node<E> poppedItem = head;
+            head = head.next;
+            size--;
+            return poppedItem.element;
+        }
     }
 
     /**
@@ -31,17 +49,20 @@ public class LinkedStack23Y<E> implements Stack23Y<E> {
      */
     @Override
     public E peek() {
-
-        return null;
+        if (size == 0){
+            throw new NoSuchElementException("Stack is empty!");
+        } else {
+            return head.element;
+        }
     }
+
 
     /**
      * Return true, if this stack is empty.
      */
     @Override
     public boolean isEmpty() {
-
-        return false;
+        return size == 0;
     }
 
     /**
@@ -49,7 +70,8 @@ public class LinkedStack23Y<E> implements Stack23Y<E> {
      */
     @Override
     public void clear() {
-        // TODO
+        head = null;
+        size = 0;
     }
 
     /**
@@ -57,8 +79,7 @@ public class LinkedStack23Y<E> implements Stack23Y<E> {
      */
     @Override
     public int size() {
-
-        return 0;
+        return size;
     }
 
     //-------------------------------------------------------------------------
