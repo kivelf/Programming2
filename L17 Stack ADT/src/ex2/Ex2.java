@@ -28,14 +28,12 @@ public class Ex2 {
                         stack.pop();
                     } else {
                         bracketsMatch = false;
-                        keepGoing = false;
                     }
                 } else if (stringToTest.charAt(i) == 93 || stringToTest.charAt(i) == 125){
                     if ((char) stack.peek() == (stringToTest.charAt(i) - 2)){
                         stack.pop();
                     } else {
                         bracketsMatch = false;
-                        keepGoing = false;
                     }
                 }
                 if (i == stringToTest.length() - 1){
@@ -43,7 +41,6 @@ public class Ex2 {
                 }
             }
         }
-
         return bracketsMatch;
     }
 }
