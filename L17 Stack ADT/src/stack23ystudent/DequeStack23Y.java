@@ -28,7 +28,7 @@ public class DequeStack23Y<E> implements Stack23Y<E> {
         if (deque.size() == 0){
             throw new NoSuchElementException("Stack is empty!");
         } else {
-            return deque.pop();
+            return deque.removeFirst();
         }
     }
 
@@ -41,7 +41,7 @@ public class DequeStack23Y<E> implements Stack23Y<E> {
         if (deque.size() == 0){
             throw new NoSuchElementException("Stack is empty!");
         } else {
-            return deque.peek();
+            return deque.getFirst();
         }
     }
 
