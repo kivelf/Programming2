@@ -16,10 +16,9 @@ public class Ex2 {
 
     public static boolean checkMatchingBrackets(String stringToTest){
         Stack23Y stack = new ArrayStack23Y();
-        boolean bracketsMatch = true;
         boolean keepGoing = true;
 
-        while (bracketsMatch && keepGoing){
+        while (keepGoing){
             for (int i = 0; i < stringToTest.length(); i++){
                 if (stringToTest.charAt(i) == 40 || stringToTest.charAt(i) == 91 || stringToTest.charAt(i) == 123){
                     stack.push(stringToTest.charAt(i));
@@ -27,13 +26,13 @@ public class Ex2 {
                     if ((char) stack.peek() == 40){
                         stack.pop();
                     } else {
-                        bracketsMatch = false;
+                        return false;
                     }
                 } else if (stringToTest.charAt(i) == 93 || stringToTest.charAt(i) == 125){
                     if ((char) stack.peek() == (stringToTest.charAt(i) - 2)){
                         stack.pop();
                     } else {
-                        bracketsMatch = false;
+                        return false;
                     }
                 }
                 if (i == stringToTest.length() - 1){
@@ -41,6 +40,6 @@ public class Ex2 {
                 }
             }
         }
-        return bracketsMatch;
+        return stack.isEmpty();
     }
 }
