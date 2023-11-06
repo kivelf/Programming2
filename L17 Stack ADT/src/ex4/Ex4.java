@@ -15,7 +15,7 @@ public class Ex4 {
         int result = 0;
         try {
             Stack23Y stack = new ArrayStack23Y();
-            String[] input = postfixInput.split(" ");
+            String[] input = postfixInput.split("\\s+");
 
             for (String i : input) {
                 if (i.charAt(0) >= 48 && i.charAt(0) <= 57) {
