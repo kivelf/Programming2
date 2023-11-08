@@ -15,8 +15,8 @@ public class LinkedDropOutStack<E> implements DropOutStack<E> {
         // default maxSize = 4
     }
 
-    public LinkedDropOutStack(int size) {
-        this.size = size;
+    public LinkedDropOutStack(int maxSize) {
+        this.maxSize = maxSize;
     }
 
     /**
