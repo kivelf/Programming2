@@ -24,6 +24,8 @@ public class Ex1App {
         System.out.println(sortedList.remove("Sofia"));
         System.out.println(sortedList.remove("Madrid"));
         System.out.println("Sorted list: " + sortedList + ", size: " + sortedList.size());
+        // testing exercise 4
+        System.out.println("Size (using recursion): " + sortedList.sizeUsingRecursion());
         System.out.println();
 
         // testing exercise 3)
@@ -37,5 +39,6 @@ public class Ex1App {
         System.out.println("Sorted list 2: " + sortedList2);
         sortedList.addAll(sortedList2);
         System.out.println("Sorted list 1 after merge: " + sortedList);
+        System.out.println("Size (using recursion): " + sortedList.sizeUsingRecursion());
     }
 }

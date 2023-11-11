@@ -145,6 +145,23 @@ public class SortedSingleList23Y<E extends Comparable<E>> implements SortedList2
         return count;
     }
 
+    // exercise 4
+    // Implement another version of the size() method that uses recursion.
+    /**
+     * Return the number of elements in the list.
+     * Do NOT use a size field in your implementation!!
+     */
+    public int sizeUsingRecursion(){
+        return recursiveSize(first);
+    }
+
+    private int recursiveSize(Node<E> firstNode) {
+        if (firstNode == null) {
+            return 0;
+        }
+        return 1 + recursiveSize(firstNode.next);
+    }
+
     //-------------------------------------------------------------------------
     private static class Node<T> {
         private final T element;
