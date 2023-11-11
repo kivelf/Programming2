@@ -8,6 +8,11 @@ public class SortedSingleList23Y<E extends Comparable<E>> implements SortedList2
     public SortedSingleList23Y() {
     }
 
+    // getter method
+    public Node<E> getFirst() {
+        return first;
+    }
+
     /**
      * Add the element to the list.
      * The list is still sorted after the element is added.
@@ -29,6 +34,34 @@ public class SortedSingleList23Y<E extends Comparable<E>> implements SortedList2
             // inserting the new node in the correct position
             newNode.next = current.next;
             current.next = newNode;
+        }
+    }
+
+    // Exercise 3
+    /**
+     * Add all elements in the given list to the current list.
+     * The current list is still sorted after the elements are added.
+     * Make an implementation that only traverses the lists once.
+     */
+    public void addAll(SortedSingleList23Y<E> list) {
+        Node<E> currentThisList = first;
+        Node<E> currentOtherList = list.getFirst();
+
+        while (currentOtherList != null && currentOtherList.next != null) {
+            E elementToAdd = currentOtherList.next.element;
+
+            // Find the correct position to insert the element in the current list
+            while (currentThisList.next != null && elementToAdd.compareTo(currentThisList.next.element) > 0) {
+                currentThisList = currentThisList.next;
+            }
+
+            // Insert the element in the correct position
+            Node<E> newNode = new Node<>(elementToAdd);
+            newNode.next = currentThisList.next;
+            currentThisList.next = newNode;
+
+            // Move to the next element in the other list
+            currentOtherList = currentOtherList.next;
         }
     }
 
