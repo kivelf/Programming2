@@ -45,10 +45,10 @@ public class SortedSingleList23Y<E extends Comparable<E>> implements SortedList2
      */
     public void addAll(SortedSingleList23Y<E> list) {
         Node<E> currentThisList = first;
-        Node<E> currentOtherList = list.getFirst();
+        Node<E> currentOtherList = list.first;
 
-        while (currentOtherList != null && currentOtherList.next != null) {
-            E elementToAdd = currentOtherList.next.element;
+        while (currentOtherList != null && currentOtherList != null) {
+            E elementToAdd = currentOtherList.element;
 
             // Find the correct position to insert the element in the current list
             while (currentThisList.next != null && elementToAdd.compareTo(currentThisList.next.element) > 0) {
@@ -64,6 +64,22 @@ public class SortedSingleList23Y<E extends Comparable<E>> implements SortedList2
             currentOtherList = currentOtherList.next;
         }
     }
+
+
+    /**
+     * Add all elements in the given list to the current list.
+     * The current list is still sorted after the elements are added.
+     * Alt implementation that can traverse the lists more than once.
+     */
+    public void addAll2(SortedSingleList23Y<E> list) {
+        Node<E> node = list.first;
+        while (node != null){
+            this.add(node.element);
+            node = node.next;
+        }
+    }
+
+
 
     /**
      * Remove the first element in the list.

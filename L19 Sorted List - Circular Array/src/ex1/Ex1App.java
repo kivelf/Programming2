@@ -40,5 +40,19 @@ public class Ex1App {
         sortedList.addAll(sortedList2);
         System.out.println("Sorted list 1 after merge: " + sortedList);
         System.out.println("Size (using recursion): " + sortedList.sizeUsingRecursion());
+
+        // testing exercise 3) alt solution
+        SortedSingleList23Y<String> sortedList3 = new SortedSingleList23Y<>();
+        sortedList3.add("Bombai");
+        sortedList3.add("New York");
+        sortedList3.add("Sofia");   // duplicate city!
+        sortedList3.add("Lisbon");
+        sortedList3.add("Copenhagen");
+
+        System.out.println("Sorted list 1: " + sortedList);
+        System.out.println("Sorted list 3: " + sortedList3);
+        sortedList.addAll(sortedList3);
+        System.out.println("Sorted list 1 after merge with list 3: " + sortedList);
+        System.out.println("Size (using recursion): " + sortedList.sizeUsingRecursion());
     }
 }
