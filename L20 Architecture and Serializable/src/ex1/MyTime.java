@@ -1,9 +1,13 @@
 package ex1;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyTime implements Serializable {
     private int time;
+    // opg. 2
+    private List<String> times = new ArrayList<>();
 
     // constructor
     public MyTime() {
@@ -21,6 +25,11 @@ public class MyTime implements Serializable {
     // getter method
     public int getTime() {
         return time;
+    }
+
+    // opg.2 gemmer nuværende time i times
+    public void saveTime(){
+        times.add(this.toString());
     }
 
     @Override

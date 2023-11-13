@@ -8,9 +8,12 @@ public class Ex1App {
         MyTime myTime = new MyTime();
 
         // 1.2) increase the time a couple of times
+        myTime.saveTime();
         myTime.increase();
         myTime.increase();
+        myTime.saveTime();
         myTime.increase();
+        myTime.saveTime();
 
         // 1.3) test the method getTime()
         System.out.println("The time is now: " + myTime.getTime());
@@ -32,7 +35,7 @@ public class Ex1App {
         // 1.6) run the program a couple of times to mkae sure it loads correctly from the file
         String filename2 = "D:\\Datamatiker\\1 semester\\Programmering 1\\Java projects\\" +
                 "Programming2\\L20 Architecture and Serializable\\src\\ex1\\MyTime.ser";
-        try (FileInputStream f_in = new FileInputStream(filename);
+        try (FileInputStream f_in = new FileInputStream(filename2);
              ObjectInputStream obj_in = new ObjectInputStream(f_in)
         ) {
             Object obj = obj_in.readObject();
@@ -47,7 +50,7 @@ public class Ex1App {
 
         myTime.reset();
 
-        try (FileOutputStream f_out = new FileOutputStream(filename);
+        try (FileOutputStream f_out = new FileOutputStream(filename2);
              ObjectOutputStream obj_out = new ObjectOutputStream(f_out)
         ) {
             obj_out.writeObject(myTime);
