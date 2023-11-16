@@ -1,4 +1,4 @@
-package architecture1stsem.model;
+package architecture1stsemNew.model;
 
 public class Employee {
     private String name;

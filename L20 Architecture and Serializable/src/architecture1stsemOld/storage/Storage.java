@@ -1,7 +1,7 @@
-package architecture1stsem.storage;
+package architecture1stsemOld.storage;
 
-import architecture1stsem.model.Company;
-import architecture1stsem.model.Employee;
+import architecture1stsemOld.model.Company;
+import architecture1stsemOld.model.Employee;
 
 import java.util.ArrayList;
 

@@ -1,13 +1,13 @@
-package architecture1stsem.controller;
+package architecture1stsemNew.controller;
 
-import architecture1stsem.model.Company;
-import architecture1stsem.model.Employee;
-import architecture1stsem.storage.Storage;
+import architecture1stsemNew.model.Company;
+import architecture1stsemNew.model.Employee;
+import architecture1stsemNew.storage.StorageList;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Controller {
-    private static Storage storage;
+    private static StorageList storage;
 
     /**
      * Create a new Company.
@@ -15,7 +15,7 @@ public abstract class Controller {
      */
     public static Company createCompany(String name, int hours) {
         Company company = new Company(name, hours);
-        Storage.storeCompany(company);
+        storage.storeCompany(company);
         return company;
     }
 
@@ -24,7 +24,7 @@ public abstract class Controller {
      * Pre: The company has no employees.
      */
     public static void deleteCompany(Company company) {
-        Storage.deleteCompany(company);
+        storage.deleteCompany(company);
     }
 
     /**
@@ -36,8 +36,8 @@ public abstract class Controller {
         company.setHours(hours);
     }
 
-    public static ArrayList<Company> getCompanies() {
-        return Storage.getCompanies();
+    public static List<Company> getCompanies() {
+        return storage.getCompanies();
     }
 
     // -------------------------------------------------------------------------
@@ -48,7 +48,7 @@ public abstract class Controller {
      */
     public static Employee createEmployee(String name, int wage) {
         Employee employee = new Employee(name, wage);
-        Storage.storeEmployee(employee);
+        storage.storeEmployee(employee);
         return employee;
     }
 
@@ -60,7 +60,7 @@ public abstract class Controller {
         if (company != null) {
             company.removeEmployee(employee);
         }
-        Storage.deleteEmployee(employee);
+        storage.deleteEmployee(employee);
     }
 
     /**
@@ -72,8 +72,8 @@ public abstract class Controller {
         employee.setWage(wage);
     }
 
-    public static ArrayList<Employee> getEmployees() {
-        return Storage.getEmployees();
+    public static List<Employee> getEmployees() {
+        return storage.getEmployees();
     }
 
     // -------------------------------------------------------------------------
@@ -101,7 +101,7 @@ public abstract class Controller {
         }
     }
 
-    public static void setStorage(Storage storage) {
+    public static void setStorage(StorageList storage) {
         Controller.storage = storage;
     }
 }

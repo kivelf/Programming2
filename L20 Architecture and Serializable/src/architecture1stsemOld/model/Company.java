@@ -1,4 +1,4 @@
-package architecture1stsem.model;
+package architecture1stsemOld.model;
 
 import java.util.ArrayList;
 

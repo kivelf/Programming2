@@ -1,8 +1,8 @@
-package architecture1stsem.gui;
+package architecture1stsemNew.gui;
 
-import architecture1stsem.controller.Controller;
-import architecture1stsem.model.Company;
-import architecture1stsem.model.Employee;
+import architecture1stsemNew.controller.Controller;
+import architecture1stsemNew.model.Company;
+import architecture1stsemNew.model.Employee;
 import javafx.application.Application;
 
 public class ArchitectureApp {

@@ -1,8 +1,8 @@
-package architecture1stsem.gui;
+package architecture1stsemOld.gui;
 
-import architecture1stsem.controller.Controller;
-import architecture1stsem.model.Company;
-import architecture1stsem.model.Employee;
+import architecture1stsemOld.controller.Controller;
+import architecture1stsemOld.model.Company;
+import architecture1stsemOld.model.Employee;
 import javafx.beans.value.ChangeListener;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
