@@ -7,6 +7,7 @@ import architecture1stsem.storage.Storage;
 import java.util.ArrayList;
 
 public abstract class Controller {
+    private static Storage storage;
 
     /**
      * Create a new Company.
@@ -98,5 +99,9 @@ public abstract class Controller {
             company.removeEmployee(employee);
             employee.setCompany(null);
         }
+    }
+
+    public static void setStorage(Storage storage) {
+        Controller.storage = storage;
     }
 }
