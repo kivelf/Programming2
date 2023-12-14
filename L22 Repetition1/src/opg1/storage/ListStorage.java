@@ -1,36 +1,27 @@
-package studentapplication.storage;
+package storage;
 
-import studentapplication.controller.Storage;
-import studentapplication.model.Student;
+import model.Pizza;
+import opg1.controller.Storage;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListStorage implements Storage, Serializable {
-    private final List<Student> students = new ArrayList<>();
+    private final List<Pizza> pizzas = new ArrayList<>();
 
-    public List<Student> getStudents() {
-        return new ArrayList<>(students);
+    public List<Pizza> getPizzas() {
+        return new ArrayList<>(pizzas);
     }
 
-    public void storeStudent(Student student) {
-        students.add(student);
-    }
-
-    public void deleteStudent(Student student) {
-        students.remove(student);
+    public void storePizza(Pizza pizza) {
+        pizzas.add(pizza);
     }
 
     // -------------------------------------------------------------------------
 
     public static ListStorage loadStorage() {
-        String fileName = "D:\\Datamatiker\\1 semester\\Programmering 1\\Java projects\\Programming2\\L20 Architecture and Serializable\\src\\studentapplication\\storage.ser";
+        String fileName = "D:\\Datamatiker\\1 semester\\Programmering 1\\Java projects\\Programming2\\L22 Repetition1\\src\\opg1\\storage.ser";
         try (FileInputStream fileIn = new FileInputStream(fileName);
              ObjectInputStream objIn = new ObjectInputStream(fileIn)
         ) {
@@ -46,7 +37,7 @@ public class ListStorage implements Storage, Serializable {
     }
 
     public static void saveStorage(Storage storage) {
-        String fileName = "D:\\Datamatiker\\1 semester\\Programmering 1\\Java projects\\Programming2\\L20 Architecture and Serializable\\src\\studentapplication\\storage.ser";
+        String fileName = "D:\\Datamatiker\\1 semester\\Programmering 1\\Java projects\\Programming2\\L22 Repetition1\\src\\opg1\\storage.ser";
         try (FileOutputStream fileOut = new FileOutputStream(fileName);
              ObjectOutputStream objOut = new ObjectOutputStream(fileOut)
         ) {
