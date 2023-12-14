@@ -2,11 +2,13 @@ package gui;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -56,6 +58,10 @@ public class PizzaInputWindow extends Stage {
 
 		Button btnOK = new Button("Opret pizza");
 		pane.add(btnOK, 0, 4);
+		HBox hBox = new HBox(btnOK);
+		pane.add(hBox, 0, 4);
+		hBox.setAlignment(Pos.CENTER);
+
 		GridPane.setHalignment(btnOK, HPos.RIGHT);
 		btnOK.setOnAction(event -> this.okAction());
 

@@ -3,11 +3,13 @@ package gui;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import model.Pizza;
 import opg1.Controller;
@@ -51,6 +53,9 @@ public class PizzaWindow extends Application implements Observer {
 		lvwPizzas.getSelectionModel().selectedItemProperty().addListener(listener);
 
 		pane.add(btnAdd, 0, 6);
+		HBox hBox = new HBox(btnAdd);
+		pane.add(hBox, 0, 6);
+		hBox.setAlignment(Pos.CENTER);
 		btnAdd.setOnAction(event -> this.addAction());
 	}
 
@@ -67,15 +72,6 @@ public class PizzaWindow extends Application implements Observer {
 	private void addAction() {
 		gui.PizzaInputWindow dialog = new gui.PizzaInputWindow("Opret pizza", null);
 		dialog.showAndWait();
-
-		/*String name = txfName.getText().trim();
-		int age = Integer.parseInt(txfAge.getText());
-		if (name.isEmpty()) return;
-
-		Controller.createStudent(name, age, chkActive.isSelected());
-
-		this.clearFields();
-		btnDelete.setDisable(true);*/
 
 		// Wait for the modal dialog to close
 
